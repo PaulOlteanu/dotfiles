@@ -103,7 +103,7 @@ in {
       rofi-wayland
 
       # TODO: Configure through home manager. These don't have config options
-      dunst
+      # dunst
       hyprpaper
     ];
   };

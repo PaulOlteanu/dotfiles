@@ -26,7 +26,7 @@
         "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
       ];
       exec-once = [
-        "dunst"
+        # "dunst"
         "waybar"
         "hyprpaper"
         "/home/paul/.config/hypr/import-gsettings"
@@ -93,7 +93,7 @@
       "$mainMod" = "SUPER";
 
       bind = [
-        "$mainMod, N, exec, wezterm"
+        "$mainMod, N, exec, alacritty"
         "$mainMod, SPACE, exec, rofi -show drun"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exec, /home/paul/.config/hypr/killhypr"
