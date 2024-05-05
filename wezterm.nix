@@ -11,13 +11,13 @@
     local wezterm = require 'wezterm'
     local act = wezterm.action
     return {
-      -- enable_wayland = false,
+      enable_wayland = false,
       color_scheme = 'OneDark (base16)',
       font = wezterm.font 'JetbrainsMonoNL Nerd Font',
       font_size = 18.0,
-      -- tiling_desktop_environments = {
-      --  'X11 wlroots wm'
-      -- },
+      tiling_desktop_environments = {
+        'X11 wlroots wm'
+      },
       enable_scroll_bar = true,
       window_padding = {
         right = 16,

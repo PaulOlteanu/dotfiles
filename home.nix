@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  wezterm,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -24,8 +23,8 @@
     ./alacritty.nix
     ./starship.nix
     ./git.nix
-    # ./wezterm.nix
-    ./zellij.nix
+    ./wezterm.nix
+    # ./zellij.nix
     ./helix.nix
     ./vscode.nix
   ];

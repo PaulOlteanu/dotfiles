@@ -10,20 +10,25 @@
     };
 
     wezterm = {
-      url = "github:wez/wezterm?dir=nix";
+      url = "github:wez/wezterm/a082117bb800ca00f4c333cc7d25660484eb24ac?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #  };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     wezterm,
+    # hyprland,
     ...
   }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    wt = wezterm.packages.${system}.default;
   in {
     homeConfigurations."paul" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
@@ -31,8 +36,13 @@
       # Specify your home configuration modules here, for example,
       # the path to your home.nix.
       modules = [./home.nix];
-      extraSpecialArgs = {
+
+      extraSpecialArgs = let
+        wt = wezterm.packages.${system}.default;
+        # h = hyprland.packages.${system}.default;
+      in {
         wezterm = wt;
+        # hyprland = h;
       };
 
       # Optionally use extraSpecialArgs
