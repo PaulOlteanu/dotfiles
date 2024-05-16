@@ -2,9 +2,11 @@
 {
   config,
   pkgs,
+  hyprland,
   ...
 }: {
   wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.package = hyprland;
 
   wayland.windowManager.hyprland.settings = {
     env = [
@@ -26,10 +28,9 @@
       "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
     ];
     exec-once = [
-      # "dunst"
       "waybar"
-      "hyprpaper"
       "/home/paul/.config/hypr/import-gsettings"
+      # "/nix/store/$(ls -la /nix/store | grep pantheon-agent-polkit | grep '^d' | awk '{print $9}')/libexec/policykit-1-pantheon"
       "/nix/store/$(ls -la /nix/store | grep polkit-kde-agent | grep '^d' | awk '{print $9}')/libexec/polkit-kde-authentication-agent-1"
     ];
 
@@ -52,7 +53,6 @@
 
       layout = "dwindle";
 
-      no_cursor_warps = true;
       allow_tearing = false;
     };
 
@@ -93,7 +93,7 @@
     "$mainMod" = "SUPER";
 
     bind = [
-      "$mainMod, N, exec, wezterm"
+      "$mainMod, N, exec, alacritty"
 
       "$mainMod, SPACE, exec, rofi -show drun"
       "$mainMod, Q, killactive,"
@@ -102,6 +102,8 @@
       "$mainMod, F, togglefloating"
       "$mainMod, P, pseudo,"
       "$mainMod, COMMA, togglesplit,"
+
+      ''SUPER SHIFT, S, exec, grim -g "$(slurp -d)" - | wl-copy''
 
       "$mainMod, h, movefocus, l"
       "$mainMod, l, movefocus, r"

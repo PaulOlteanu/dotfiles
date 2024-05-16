@@ -14,17 +14,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #  };
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland/?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+     };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     wezterm,
-    # hyprland,
+    hyprland,
     ...
   }: let
     system = "x86_64-linux";
@@ -39,10 +39,10 @@
 
       extraSpecialArgs = let
         wt = wezterm.packages.${system}.default;
-        # h = hyprland.packages.${system}.default;
+        h = hyprland.packages.${system}.default;
       in {
         wezterm = wt;
-        # hyprland = h;
+        hyprland = h;
       };
 
       # Optionally use extraSpecialArgs

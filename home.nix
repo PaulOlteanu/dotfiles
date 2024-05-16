@@ -24,7 +24,7 @@
     ./starship.nix
     ./git.nix
     ./wezterm.nix
-    # ./zellij.nix
+    ./zellij.nix
     ./helix.nix
     ./vscode.nix
   ];
@@ -74,7 +74,6 @@
     kubernetes
 
     rustup
-
     nodePackages.pyright
     nodePackages.typescript-language-server
     black
@@ -82,7 +81,10 @@
     alejandra
     taplo
 
+    grim
+    slurp
     playerctl
+
     spotify
     discord
   ];

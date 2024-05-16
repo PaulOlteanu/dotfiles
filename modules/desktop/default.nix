@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  hyprland,
   ...
 }:
 with lib; let
@@ -58,11 +59,18 @@ in {
     services.playerctld.enable = true;
     services.udiskie.enable = true;
     services.swaync.enable = true;
+    services.hyprpaper.enable = true;
+
+      services.hyprpaper.settings = {
+      preload = "/home/paul/Pictures/Penguin.png";
+      wallpaper = ",/home/paul/Pictures/Penguin.png";
+      splash = false;
+    };
 
     xdg.portal.enable = true;
     xdg.portal.xdgOpenUsePortal = true;
     xdg.portal.configPackages = [
-      pkgs.hyprland
+      hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
     xdg.portal.extraPortals = [
@@ -74,6 +82,7 @@ in {
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      liberation_ttf
       font-awesome
       source-han-sans
       source-han-sans-japanese
@@ -90,6 +99,7 @@ in {
       pavucontrol
       helvum
       wl-clipboard
+      pantheon.pantheon-agent-polkit
 
       gnome.adwaita-icon-theme
       papirus-icon-theme
@@ -102,10 +112,6 @@ in {
       # TODO: Configure though home manager. These have config options
       waybar
       rofi-wayland
-
-      # TODO: Configure through home manager. These don't have config options
-      # dunst
-      hyprpaper
     ];
   };
 }
