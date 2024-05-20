@@ -3,6 +3,7 @@
   config,
   pkgs,
   hyprland,
+  theme,
   ...
 }:
 with lib; let
@@ -10,7 +11,6 @@ with lib; let
 in {
   imports = [
     ./hyprland.nix
-    # ./sway.nix
     ./waybar.nix
   ];
 
@@ -19,13 +19,24 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # TODO: Move this to config folder
+    stylix.image = /home/paul/Pictures/Penguin.png;
+    stylix.polarity = "dark";
+    stylix.base16Scheme = theme;
+    stylix.fonts.monospace.name = "JetbrainsMonoNL Nerd Font";
+    stylix.fonts.monospace.package =
+      pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+
+    stylix.targets.fish.enable = false;
+    stylix.targets.helix.enable = false;
+    stylix.targets.waybar.enable = false;
+    stylix.targets.zellij.enable = true;
+
+    stylix.targets.k9s.enable = true;
+    programs.k9s.settings.skin = "skin";
+
     gtk = {
       enable = true;
-
-      theme = {
-        name = "Arc-Dark";
-        package = pkgs.arc-theme;
-      };
 
       cursorTheme = {
         name = "Adwaita";
@@ -35,12 +46,6 @@ in {
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
-      };
-
-      font = {
-        name = "Public Sans";
-        size = 12;
-        package = pkgs.public-sans;
       };
 
       gtk3.extraConfig = {
@@ -60,8 +65,7 @@ in {
     services.udiskie.enable = true;
     services.swaync.enable = true;
     services.hyprpaper.enable = true;
-
-      services.hyprpaper.settings = {
+    services.hyprpaper.settings = {
       preload = "/home/paul/Pictures/Penguin.png";
       wallpaper = ",/home/paul/Pictures/Penguin.png";
       splash = false;
@@ -103,7 +107,6 @@ in {
 
       gnome.adwaita-icon-theme
       papirus-icon-theme
-      arc-theme
       xdg-desktop-portal-gtk
       glib
       gsettings-desktop-schemas

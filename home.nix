@@ -23,7 +23,7 @@
     ./alacritty.nix
     ./starship.nix
     ./git.nix
-    ./wezterm.nix
+    # ./wezterm.nix
     ./zellij.nix
     ./helix.nix
     ./vscode.nix
@@ -56,8 +56,8 @@
   };
   programs.tealdeer.enable = true;
 
-
   programs.k9s.enable = true;
+
   programs.lazygit.enable = true;
 
   programs.ruff.enable = true;

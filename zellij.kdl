@@ -24,7 +24,36 @@ theme "onedark"
 
 keybinds {
 	shared {
-		unbind "Ctrl C"
-		bind "Ctrl C" { Copy; }
+		// unbind "Ctrl C"
+		// bind "Ctrl C" { Copy; }
+		bind "Ctrl 1" { GoToTab 1; }
+		bind "Ctrl 2" { GoToTab 2; }
+		bind "Ctrl 3" { GoToTab 3; }
+		bind "Ctrl 4" { GoToTab 4; }
+		bind "Ctrl 5" { GoToTab 5; }
+		bind "Ctrl 6" { GoToTab 6; }
+		bind "Ctrl 7" { GoToTab 7; }
+		bind "Ctrl 8" { GoToTab 8; }
+		// bind "Ctrl 9" { GoToTab 1; }
+
+		// bind "Ctrl T" { NewTab; }
+	}
+
+	shared_except "move" "locked" {
+		unbind "Ctrl h"
+        bind "Ctrl k" { SwitchToMode "Move"; }
+    }
+	move {
+		unbind "Ctrl h"
+		bind "Ctrl k" { SwitchToMode "Normal"; }
+	}
+
+	shared_except "session" "locked" {
+		unbind "Ctrl o"
+        bind "Ctrl h" { SwitchToMode "Session"; }
+    }
+	session {
+		unbind "Ctrl o"
+		bind "Ctrl h" { SwitchToMode "Normal"; }
 	}
 }

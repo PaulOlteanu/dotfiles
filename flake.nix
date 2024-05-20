@@ -9,21 +9,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm = {
-      url = "github:wez/wezterm/a082117bb800ca00f4c333cc7d25660484eb24ac?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    stylix.url = "github:danth/stylix";
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland/?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
-     };
+    };
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
-    wezterm,
+    stylix,
     hyprland,
     ...
   }: let
@@ -35,14 +33,14 @@
 
       # Specify your home configuration modules here, for example,
       # the path to your home.nix.
-      modules = [./home.nix];
+      modules = [stylix.homeManagerModules.stylix ./home.nix];
 
       extraSpecialArgs = let
-        wt = wezterm.packages.${system}.default;
         h = hyprland.packages.${system}.default;
+        theme = ./themes/one-dark.yaml;
       in {
-        wezterm = wt;
         hyprland = h;
+        inherit theme;
       };
 
       # Optionally use extraSpecialArgs
