@@ -2,11 +2,9 @@
 {
   config,
   pkgs,
-  hyprland,
   ...
 }: {
   wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.package = hyprland;
 
   wayland.windowManager.hyprland.settings = {
     env = [
@@ -16,13 +14,13 @@
       "__GLX_VENDOR_LIBRARY_NAME, nvidia"
       "XCURSOR_SIZE,24"
       "GDK_SCALE,2"
-      "WLR_NO_HARDWARE_CURSORS, 1"
       "XDG_DATA_DIRS, ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-45.0:$XDG_DATA_DIRS"
     ];
     monitor = [
+      "DP-3,3840x2160@144,0x0,auto"
+      "HDMI-A-1,1920x1080@144,auto-left,auto"
+      "DP-2,preferred,auto-right,auto"
       ",preferred,auto,auto"
-      "HDMI-A-1,1920x1080@144,auto,auto"
-      "DP-1,3840x2160@144,auto,auto"
     ];
     exec = [
       "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
@@ -42,6 +40,10 @@
       touchpad.natural_scroll = false;
       sensitivity = -0.3;
       accel_profile = "flat";
+    };
+
+    cursor = {
+      no_hardware_cursors = true;
     };
 
     general = {
@@ -76,7 +78,7 @@
       preserve_split = true;
     };
 
-    master.new_is_master = true;
+    # master.new_is_master = true;
 
     gestures.workspace_swipe = false;
 
@@ -93,7 +95,7 @@
     "$mainMod" = "SUPER";
 
     bind = [
-      "$mainMod, N, exec, alacritty"
+      "$mainMod, N, exec, wezterm"
 
       "$mainMod, SPACE, exec, rofi -show drun"
       "$mainMod, Q, killactive,"

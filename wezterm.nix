@@ -1,11 +1,9 @@
 {
   config,
   pkgs,
-  wezterm,
   ...
 }: {
   programs.wezterm.enable = true;
-  programs.wezterm.package = wezterm;
 
   programs.wezterm.extraConfig = ''
     local wezterm = require 'wezterm'

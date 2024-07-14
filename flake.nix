@@ -9,20 +9,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
-
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland/?submodules=1";
+    stylix = {
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     stylix,
-    hyprland,
     ...
   }: let
     system = "x86_64-linux";
@@ -36,15 +33,10 @@
       modules = [stylix.homeManagerModules.stylix ./home.nix];
 
       extraSpecialArgs = let
-        h = hyprland.packages.${system}.default;
         theme = ./themes/one-dark.yaml;
       in {
-        hyprland = h;
         inherit theme;
       };
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
     };
   };
 }

@@ -17,13 +17,20 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+    size = 24;
+  };
+
   imports = [
     ./modules/desktop
 
     ./alacritty.nix
     ./starship.nix
     ./git.nix
-    # ./wezterm.nix
+    ./wezterm.nix
     ./zellij.nix
     ./helix.nix
     ./vscode.nix
@@ -36,6 +43,12 @@
   programs.neovim.enable = true;
 
   programs.fish.enable = true;
+  # xdg.configFile."fish/onedark.fish".source = ./onedark.fish;
+  # programs.fish.interactiveShellInit = ''
+  #   source /home/paul/.config/fish/onedark.fish
+  #   set_onedark
+  # '';
+
   programs.eza.enable = true;
   programs.fd.enable = true;
   programs.ripgrep.enable = true;
@@ -57,11 +70,18 @@
   programs.tealdeer.enable = true;
 
   programs.k9s.enable = true;
+  xdg.configFile."k9s/skins/one-dark.yaml".source = ./k9s/one-dark.yaml;
+  programs.k9s.settings = {
+    k9s.ui.skin = "one-dark";
+  };
+
 
   programs.lazygit.enable = true;
 
   programs.ruff.enable = true;
   programs.ruff.settings = {};
+
+  programs.bottom.enable = true;
 
   home.packages = with pkgs; [
     cachix
@@ -74,7 +94,7 @@
     kubernetes
 
     rustup
-    nodePackages.pyright
+    pyright
     nodePackages.typescript-language-server
     black
     nil

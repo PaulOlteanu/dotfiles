@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  hyprland,
   theme,
   ...
 }:
@@ -32,15 +31,14 @@ in {
     stylix.targets.waybar.enable = false;
     stylix.targets.zellij.enable = true;
 
-    stylix.targets.k9s.enable = true;
-    programs.k9s.settings.skin = "skin";
+    stylix.targets.k9s.enable = false;
 
     gtk = {
       enable = true;
 
       cursorTheme = {
         name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
+        package = pkgs.adwaita-icon-theme;
       };
 
       iconTheme = {
@@ -74,12 +72,12 @@ in {
     xdg.portal.enable = true;
     xdg.portal.xdgOpenUsePortal = true;
     xdg.portal.configPackages = [
-      hyprland
+      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
     xdg.portal.extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
     ];
 
     home.packages = with pkgs; [
@@ -98,14 +96,14 @@ in {
       # Other ====================================================================
       cinnamon.nemo-with-extensions
       cinnamon.nemo-fileroller
-      gnome.file-roller
-      gnome.dconf-editor
+      file-roller
+      dconf-editor
       pavucontrol
       helvum
       wl-clipboard
       pantheon.pantheon-agent-polkit
 
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
       papirus-icon-theme
       xdg-desktop-portal-gtk
       glib
