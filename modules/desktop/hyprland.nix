@@ -95,7 +95,7 @@
     "$mainMod" = "SUPER";
 
     bind = [
-      "$mainMod, N, exec, wezterm"
+      "$mainMod, N, exec, alacritty"
 
       "$mainMod, SPACE, exec, rofi -show drun"
       "$mainMod, Q, killactive,"
